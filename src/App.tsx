@@ -11,8 +11,13 @@ function App() {
 
   return (
     <>
-      <GeneralInfoForm value={generalInfo} onChange={setGeneralInfo} />
-      <GeneralInfoOutput {...generalInfo} />
+      <div className="forms">
+        <GeneralInfoForm value={generalInfo} onChange={setGeneralInfo} />
+      </div>
+      <div className="output">
+        <h1>Curriculum Vitae</h1>
+        <GeneralInfoOutput {...generalInfo} />
+      </div>
     </>
   );
 }

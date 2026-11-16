@@ -1,19 +1,32 @@
 interface EntryListProps<T extends { id: string }> {
   entries: T[];
+  emptyEntry: T;
   setEntries: (newEntries: T[]) => void;
 }
 
-export default function EntryList<T extends { id: string }>(
-  props: EntryListProps<T>,
-) {
-  const entries = props.entries;
+export default function EntryList<T extends { id: string }>({
+  entries,
+  emptyEntry,
+  setEntries,
+}: EntryListProps<T>) {
   const updateEntry = (entry: T) =>
-    props.setEntries(entries.map((e) => (e.id === entry.id ? entry : e)));
-  const insertEntry = (entry: T) => props.setEntries([...entries, entry]);
+    setEntries(entries.map((e) => (e.id === entry.id ? entry : e)));
+
+  const insertEntry = (entry: T) => setEntries([entry, ...entries]);
 
   return (
     <div className="list">
-      <button className="insert">Add</button>
+      <button
+        className="insert"
+        type="button"
+        onClick={() => insertEntry(emptyEntry)}
+      >
+        Add
+      </button>
+      {entries.map((entry) => {
+        const props = { entry, updateEntry };
+        return <Entry {...props} />;
+      })}
     </div>
   );
 }
@@ -27,12 +40,14 @@ function Entry<T extends { id: string }>({
   entry,
   updateEntry,
 }: EntryProps<T>) {
-  const keys = Object.keys(entry).filter((key) => key !== "id") as (keyof T)[];
+  const keys = Object.keys(entry).filter(
+    (property) => property !== "id",
+  ) as (keyof T)[];
 
   return (
     <div className="entry">
-      {keys.map((key) => {
-        const props: FormElFromKeyProps<T> = { key, entry, updateEntry };
+      {keys.map((property) => {
+        const props: FormElFromKeyProps<T> = { property, entry, updateEntry };
         return <FormElFromKey {...props} />;
       })}
     </div>
@@ -40,18 +55,22 @@ function Entry<T extends { id: string }>({
 }
 
 interface FormElFromKeyProps<T> {
-  key: keyof T;
+  property: keyof T;
   entry: T;
   updateEntry: (entry: T) => void;
 }
 
-function FormElFromKey<T>({ key, entry, updateEntry }: FormElFromKeyProps<T>) {
+function FormElFromKey<T>({
+  property,
+  entry,
+  updateEntry,
+}: FormElFromKeyProps<T>) {
   return (
-    <label className={key as string}>
-      <span>{displayCamelCase(key as string)}</span>
+    <label className={property as string}>
+      <span>{displayCamelCase(property as string)}</span>
       <input
-        value={entry[key] as string}
-        onChange={(e) => updateEntry({ ...entry, [key]: e.target.value })}
+        value={entry[property] as string}
+        onChange={(e) => updateEntry({ ...entry, [property]: e.target.value })}
       />
     </label>
   );

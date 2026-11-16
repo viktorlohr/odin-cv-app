@@ -15,3 +15,8 @@ export interface PracticalExperience {
   id: string;
   description: string;
 }
+
+export interface EducationEntry {
+  id: string;
+  description: string;
+}

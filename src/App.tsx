@@ -1,15 +1,15 @@
 import { useState } from "react";
 import "./App.css";
-import { type GeneralInfo, type PracticalExperience } from "./types";
+import {
+  type EducationEntry,
+  type GeneralInfo,
+  type PracticalExperience,
+} from "./types";
 import GeneralInfoForm from "./components/GeneralInfoForm";
 import GeneralInfoOutput from "./components/GeneralInfoOutput";
 import PracticalExperienceForm from "./components/practicalExperienceForm";
 import PracticalExperiencesOutput from "./components/practicalExperienceOutput";
-import TestEntries, {
-  initTestEntries,
-  type TestEntry,
-  type TestEntriesProps,
-} from "./components/testEntries";
+import EducationEntriesForm from "./components/educationEntriesForm";
 
 function App() {
   const initGeneralInfo: GeneralInfo = {
@@ -22,29 +22,38 @@ function App() {
     email: "max@mustermann.de",
     phone: "0 123 5678 9101",
   };
-  const initPracticalExperiences: PracticalExperience[] = [
-    { id: "0", description: "This is some work that i have been doing" },
-  ];
-
   const [generalInfo, setGeneralInfo] = useState<GeneralInfo>(initGeneralInfo);
+
+  const initPracticalExperience: PracticalExperience = {
+    id: "0",
+    description: "This is some work that i have been doing",
+  };
   const [practicalExperiences, setPracticalExperiences] = useState<
     PracticalExperience[]
-  >(initPracticalExperiences);
-  const [testEntries, setTestEntries] = useState<TestEntry[]>(initTestEntries);
-  const testEntriesProps: TestEntriesProps = { testEntries, setTestEntries };
+  >([initPracticalExperience]);
+  const practicalExperienceProps = {
+    practicalExperiences,
+    setPracticalExperiences,
+  };
+
+  const initEducationEntry = {
+    id: "0",
+    description: "I've had this education.",
+  };
+  const [educationEntries, setEducationEntries] = useState<EducationEntry[]>([
+    initEducationEntry,
+  ]);
+  const educationEntryProps = { educationEntries, setEducationEntries };
 
   return (
     <>
       <div className="forms">
+        <h2>General Information</h2>
         <GeneralInfoForm value={generalInfo} onChange={setGeneralInfo} />
         <h2>Education</h2>
-        <EducationForm {...educationFormProps}>
+        <EducationEntriesForm {...educationEntryProps} />
         <h2>Practical Experience</h2>
-        <PracticalExperienceForm
-          value={practicalExperiences}
-          onChange={setPracticalExperiences}
-        />
-        <TestEntries {...testEntriesProps} />
+        <PracticalExperienceForm {...practicalExperienceProps} />
       </div>
       <div className="output">
         <h1>Curriculum Vitae</h1>

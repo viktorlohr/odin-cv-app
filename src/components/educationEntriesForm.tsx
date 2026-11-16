@@ -1,13 +1,9 @@
+import type { EducationEntry } from "../types";
 import EntryListForm, { type EntryListFormProps } from "./entryListForm";
 
 interface EducationEntriesFormProps {
   educationEntries: EducationEntry[];
   setEducationEntries: (entries: EducationEntry[]) => void;
-}
-
-interface EducationEntry {
-  id: string;
-  description: string;
 }
 
 function createEmptyEducationEntry(): EducationEntry {

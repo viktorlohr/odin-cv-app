@@ -1,5 +1,7 @@
 import type { GeneralInfo } from "../types";
 
+// TODO: replace with generic implementation
+
 interface GeneralInfoFormProps {
   value: GeneralInfo;
   onChange: (v: GeneralInfo) => void;

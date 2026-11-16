@@ -18,14 +18,14 @@ export default function PracticalExperiencesOutput(
 }
 
 interface PracticalExperienceOutputProps {
-  key: number;
+  key: string;
   experience: PracticalExperience;
 }
 
 function PracticalExperienceOutput(props: PracticalExperienceOutputProps) {
   return (
     <div className="practicalExperience">
-      <div>{props.experience.description}</div>
+      <div className="description">{props.experience.description}</div>
     </div>
   );
 }

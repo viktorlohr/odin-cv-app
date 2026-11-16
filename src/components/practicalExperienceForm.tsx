@@ -13,15 +13,26 @@ export default function PracticalExperiencesForms(
     props.onChange(
       experiences.map((exp) => (exp.id === experience.id ? experience : exp)),
     );
+  const removeExperience = (id: string) =>
+    experiences.filter((exp) => exp.id !== id);
+  const addExperience = (exp: PracticalExperience) => [...experiences, exp];
 
   return (
     <div className="practicalExperiences">
       <h3>Practical Experiences</h3>
+      <button
+        onClick={() =>
+          addExperience({ id: crypto.randomUUID(), description: "" })
+        }
+      >
+        Add
+      </button>
       {experiences.map((exp) => (
         <PracticalExperienceForm
           key={exp.id}
           value={exp}
           updateExperience={updateExperience}
+          removeExperience={removeExperience}
         />
       ))}
     </div>
@@ -31,6 +42,7 @@ export default function PracticalExperiencesForms(
 interface PracticalExperienceFormProps {
   value: PracticalExperience;
   updateExperience: (v: PracticalExperience) => void;
+  removeExperience: (id: string) => void;
 }
 
 function PracticalExperienceForm(props: PracticalExperienceFormProps) {
@@ -49,6 +61,16 @@ function PracticalExperienceForm(props: PracticalExperienceFormProps) {
             })
           }
         />
+        <button
+          className="remove"
+
+          onClick={(e) => {
+            e.preventDefault();
+            props.removeExperience(experience.id);
+          }}
+        >
+          Remove
+        </button>
       </label>
     </div>
   );

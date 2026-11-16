@@ -18,7 +18,7 @@ function App() {
     phone: "0 123 5678 9101",
   };
   const initPracticalExperiences: PracticalExperience[] = [
-    { id: 0, description: "This is some work that i have been doing" },
+    { id: "0", description: "This is some work that i have been doing" },
   ];
 
   const [generalInfo, setGeneralInfo] = useState<GeneralInfo>(initGeneralInfo);

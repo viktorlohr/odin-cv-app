@@ -12,6 +12,6 @@ export interface GeneralInfo {
 export interface PracticalExperience {
   // from: Date;
   // to: Date;
-  id: number;
+  id: string;
   description: string;
 }

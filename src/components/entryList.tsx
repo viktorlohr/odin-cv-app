@@ -23,11 +23,20 @@ interface EntryProps<T extends { id: string }> {
   updateEntry: (entry: T) => void;
 }
 
-function Entry<T extends { id: string }>(props: EntryProps<T>) {
-  const entry = props.entry;
+function Entry<T extends { id: string }>({
+  entry,
+  updateEntry,
+}: EntryProps<T>) {
   const keys = Object.keys(entry).filter((key) => key !== "id") as (keyof T)[];
 
-  return <div className="entry">{keys.map}</div>;
+  return (
+    <div className="entry">
+      {keys.map((key) => {
+        const props: FormElFromKeyProps<T> = { key, entry, updateEntry };
+        return <FormElFromKey {...props} />;
+      })}
+    </div>
+  );
 }
 
 interface FormElFromKeyProps<T> {
@@ -39,10 +48,20 @@ interface FormElFromKeyProps<T> {
 function FormElFromKey<T>({ key, entry, updateEntry }: FormElFromKeyProps<T>) {
   return (
     <label className={key as string}>
+      <span>{displayCamelCase(key as string)}</span>
       <input
         value={entry[key] as string}
         onChange={(e) => updateEntry({ ...entry, [key]: e.target.value })}
       />
     </label>
   );
+}
+
+function displayCamelCase(s: string) {
+  return s
+    .split("")
+    .reduce((acc, c) =>
+      /^[A-Z]+$/.test(c) ? c.toLowerCase() + " " + acc : c + acc,
+    )
+    .toUpperCase();
 }

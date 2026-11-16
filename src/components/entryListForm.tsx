@@ -1,14 +1,14 @@
-export interface EntryListProps<T extends { id: string }> {
+export interface EntryListFormProps<T extends { id: string }> {
   entries: T[];
-  createEmptyEntry: () => T;
   setEntries: (newEntries: T[]) => void;
+  createEmptyEntry: () => T;
 }
 
-export default function EntryList<T extends { id: string }>({
+export default function EntryListForm<T extends { id: string }>({
   entries,
   createEmptyEntry,
   setEntries,
-}: EntryListProps<T>) {
+}: EntryListFormProps<T>) {
   const updateEntry = (entry: T) =>
     setEntries(entries.map((e) => (e.id === entry.id ? entry : e)));
 
@@ -31,7 +31,7 @@ export default function EntryList<T extends { id: string }>({
   );
 }
 
-interface EntryProps<T extends { id: string }> {
+interface EntryFormProps<T extends { id: string }> {
   entry: T;
   updateEntry: (entry: T) => void;
 }
@@ -39,7 +39,7 @@ interface EntryProps<T extends { id: string }> {
 function Entry<T extends { id: string }>({
   entry,
   updateEntry,
-}: EntryProps<T>) {
+}: EntryFormProps<T>) {
   const keys = Object.keys(entry).filter(
     (property) => property !== "id",
   ) as (keyof T)[];
@@ -67,7 +67,7 @@ function FormElFromKey<T>({
 }: FormElFromKeyProps<T>) {
   return (
     <label className={property as string}>
-      <span>{displayCamelCase(property as string)}</span>
+      <span>{displayCamelCase(property as string)}: </span>
       <input
         value={entry[property] as string}
         onChange={(e) => updateEntry({ ...entry, [property]: e.target.value })}
@@ -77,10 +77,13 @@ function FormElFromKey<T>({
 }
 
 function displayCamelCase(s: string) {
-  return s
+  const isUpperCase = (c: string) => /^[A-Z]+$/.test(c);
+
+  const _s = s
     .split("")
     .reduce((acc, c) =>
-      /^[A-Z]+$/.test(c) ? c.toLowerCase() + " " + acc : c + acc,
-    )
-    .toUpperCase();
+      isUpperCase(c) ? acc + " " + c.toLowerCase() : acc + c,
+    );
+
+  return _s.charAt(0).toUpperCase() + _s.slice(1);
 }

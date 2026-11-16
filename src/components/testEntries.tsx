@@ -1,4 +1,4 @@
-import EntryList, { type EntryListProps } from "./entryList";
+import EntryListForm, { type EntryListFormProps } from "./entryListForm";
 
 export interface TestEntry {
   id: string;
@@ -13,16 +13,16 @@ const createEmptyTestEntry: () => TestEntry = () => ({
   foo: "",
 });
 
-export interface TestEntryProps {
+export interface TestEntriesProps {
   testEntries: TestEntry[];
   setTestEntries: (newEntries: TestEntry[]) => void;
 }
 
-export default function ({ testEntries, setTestEntries }: TestEntryProps) {
-  const props: EntryListProps<TestEntry> = {
+export default function ({ testEntries, setTestEntries }: TestEntriesProps) {
+  const props: EntryListFormProps<TestEntry> = {
     entries: testEntries,
     createEmptyEntry: createEmptyTestEntry,
     setEntries: setTestEntries,
   };
-  return <EntryList {...props} />;
+  return <EntryListForm {...props} />;
 }

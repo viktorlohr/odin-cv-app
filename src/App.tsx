@@ -5,7 +5,11 @@ import GeneralInfoForm from "./components/GeneralInfoForm";
 import GeneralInfoOutput from "./components/GeneralInfoOutput";
 import PracticalExperienceForm from "./components/practicalExperienceForm";
 import PracticalExperiencesOutput from "./components/practicalExperienceOutput";
-import { initTestEntries, type TestEntry } from "./components/testEntries";
+import TestEntries, {
+  initTestEntries,
+  type TestEntry,
+  type TestEntriesProps,
+} from "./components/testEntries";
 
 function App() {
   const initGeneralInfo: GeneralInfo = {
@@ -27,16 +31,20 @@ function App() {
     PracticalExperience[]
   >(initPracticalExperiences);
   const [testEntries, setTestEntries] = useState<TestEntry[]>(initTestEntries);
+  const testEntriesProps: TestEntriesProps = { testEntries, setTestEntries };
 
   return (
     <>
       <div className="forms">
         <GeneralInfoForm value={generalInfo} onChange={setGeneralInfo} />
+        <h2>Education</h2>
+        <EducationForm {...educationFormProps}>
+        <h2>Practical Experience</h2>
         <PracticalExperienceForm
           value={practicalExperiences}
           onChange={setPracticalExperiences}
         />
-        <TestEntries />
+        <TestEntries {...testEntriesProps} />
       </div>
       <div className="output">
         <h1>Curriculum Vitae</h1>

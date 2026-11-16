@@ -10,6 +10,9 @@ import GeneralInfoOutput from "./components/GeneralInfoOutput";
 import PracticalExperienceForm from "./components/practicalExperienceForm";
 import PracticalExperiencesOutput from "./components/practicalExperienceOutput";
 import EducationEntriesForm from "./components/educationEntriesForm";
+import EducationOutput, {
+  type EducationOutputProps,
+} from "./components/educationOutput";
 
 function App() {
   const initGeneralInfo: GeneralInfo = {
@@ -44,20 +47,30 @@ function App() {
     initEducationEntry,
   ]);
   const educationEntryProps = { educationEntries, setEducationEntries };
+  const educationOutputProps: EducationOutputProps = { educationEntries };
 
   return (
     <>
       <div className="forms">
         <h2>General Information</h2>
         <GeneralInfoForm value={generalInfo} onChange={setGeneralInfo} />
+
         <h2>Education</h2>
         <EducationEntriesForm {...educationEntryProps} />
+
         <h2>Practical Experience</h2>
         <PracticalExperienceForm {...practicalExperienceProps} />
       </div>
       <div className="output">
         <h1>Curriculum Vitae</h1>
+
+        <h2>Personal Information</h2>
         <GeneralInfoOutput {...generalInfo} />
+
+        <h2>Education</h2>
+        <EducationOutput {...educationOutputProps} />
+
+        <h2>Pracitcal Experience</h2>
         <PracticalExperiencesOutput experiences={practicalExperiences} />
       </div>
     </>

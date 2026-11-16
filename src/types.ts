@@ -8,3 +8,10 @@ export interface GeneralInfo {
   email: string;
   phone: string;
 }
+
+export interface PracticalExperience {
+  // from: Date;
+  // to: Date;
+  id: string;
+  description: string;
+}

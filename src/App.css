@@ -8,6 +8,7 @@
 }
 
 .forms {
+  padding: 6px;
 }
 
 .form {
@@ -22,6 +23,7 @@
 }
 
 .output {
+  margin: 1rem;
   height: 29.7cm;
   width: 21cm;
   background-color: white;

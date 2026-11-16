@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./App.css";
-import { type GeneralInfo } from "./types";
+import { type GeneralInfo, type PracticalExperience } from "./types";
 import GeneralInfoForm from "./components/GeneralInfoForm";
 import GeneralInfoOutput from "./components/GeneralInfoOutput";
+import PracticalExperienceForm from "./components/practicalExperienceForm";
 
 function App() {
   const initGeneralInfo: GeneralInfo = {
@@ -17,11 +18,18 @@ function App() {
   };
 
   const [generalInfo, setGeneralInfo] = useState<GeneralInfo>(initGeneralInfo);
+  const [practicalExperiences, setPracticalExperiences] = useState<
+    PracticalExperience[]
+  >([]);
 
   return (
     <>
       <div className="forms">
         <GeneralInfoForm value={generalInfo} onChange={setGeneralInfo} />
+        <PracticalExperienceForm
+          value={practicalExperiences}
+          onChange={setPracticalExperiences}
+        />
       </div>
       <div className="output">
         <h1>Curriculum Vitae</h1>

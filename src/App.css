@@ -1,5 +1,6 @@
 :root {
   background-color: rgb(208, 232, 252);
+  font-family: sans-serif;
 }
 
 #root {
@@ -67,4 +68,21 @@ h1,
 h2,
 h3 {
   margin: 0;
+}
+
+.output .generalInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.output .name {
+  font-size: 1.1rem;
+  font-weight: bold;
 }

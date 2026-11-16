@@ -7,6 +7,7 @@ export interface GeneralInfo {
   postalCode: number;
   email: string;
   phone: string;
+  profilePictureLink: string;
 }
 
 export interface ListEntry {

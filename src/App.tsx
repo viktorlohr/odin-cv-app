@@ -25,6 +25,7 @@ function App() {
     city: "Mustercity",
     email: "max@mustermann.de",
     phone: "0 123 5678 9101",
+    profilePictureLink: "https://placehold.co/200x200",
   };
   const [generalInfo, setGeneralInfo] = useState<GeneralInfo>(initGeneralInfo);
 

@@ -1,7 +1,7 @@
 import type { PracticalExperience } from "../types";
 
 interface PracticalExperiencesFormsProps {
-  value: [PracticalExperience];
+  value: PracticalExperience[];
   onChange: (v: [PracticalExperience]) => void;
 }
 

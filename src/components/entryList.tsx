@@ -1,12 +1,12 @@
-interface EntryListProps<T extends { id: string }> {
+export interface EntryListProps<T extends { id: string }> {
   entries: T[];
-  emptyEntry: T;
+  createEmptyEntry: () => T;
   setEntries: (newEntries: T[]) => void;
 }
 
 export default function EntryList<T extends { id: string }>({
   entries,
-  emptyEntry,
+  createEmptyEntry,
   setEntries,
 }: EntryListProps<T>) {
   const updateEntry = (entry: T) =>
@@ -19,7 +19,7 @@ export default function EntryList<T extends { id: string }>({
       <button
         className="insert"
         type="button"
-        onClick={() => insertEntry(emptyEntry)}
+        onClick={() => insertEntry(createEmptyEntry())}
       >
         Add
       </button>

@@ -14,13 +14,15 @@ export default function PracticalExperiencesForms(
       experiences.map((exp) => (exp.id === experience.id ? experience : exp)),
     );
   const removeExperience = (id: string) =>
-    experiences.filter((exp) => exp.id !== id);
-  const addExperience = (exp: PracticalExperience) => [...experiences, exp];
+    props.onChange(experiences.filter((exp) => exp.id !== id));
+  const addExperience = (exp: PracticalExperience) =>
+    props.onChange([...experiences, exp]);
 
   return (
     <div className="practicalExperiences">
       <h3>Practical Experiences</h3>
       <button
+        type="button"
         onClick={() =>
           addExperience({ id: crypto.randomUUID(), description: "" })
         }
@@ -61,17 +63,17 @@ function PracticalExperienceForm(props: PracticalExperienceFormProps) {
             })
           }
         />
-        <button
-          className="remove"
-
-          onClick={(e) => {
-            e.preventDefault();
-            props.removeExperience(experience.id);
-          }}
-        >
-          Remove
-        </button>
       </label>
+      <button
+        className="remove"
+
+        onClick={(e) => {
+          e.preventDefault();
+          props.removeExperience(experience.id);
+        }}
+      >
+        Remove
+      </button>
     </div>
   );
 }

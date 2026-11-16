@@ -9,25 +9,37 @@ export default function PracticalExperiencesForms(
   props: PracticalExperiencesFormsProps,
 ) {
   const experiences = props.value;
-  const updateExp = (experience: PracticalExperience) =>
+  const updateExperience = (experience: PracticalExperience) =>
     experiences.map((exp) => (exp.id === experience.id ? experience : exp));
 
-  return <div className="practicalExperiences"></div>;
+  return (
+    <div className="practicalExperiences">
+      {experiences.map((exp) =>
+        PracticalExperienceForm({ value: exp, updateExperience }),
+      )}
+    </div>
+  );
 }
 
 interface PracticalExperienceFormProps {
   value: PracticalExperience;
-  handleChange: (v: PracticalExperience) => void;
+  updateExperience: (v: PracticalExperience) => void;
 }
 
 function PracticalExperienceForm(props: PracticalExperienceFormProps) {
+  const experience = props.value;
   return (
     <div className="practicalExperience form">
       <label className="description">
         <input
           type="text"
           value={props.value.description}
-          onChange={(e) => props.handleChange(...props.value, e.target.value)}
+          onChange={(e) =>
+            props.updateExperience({
+              ...experience,
+              description: e.target.value,
+            })
+          }
         />
       </label>
     </div>

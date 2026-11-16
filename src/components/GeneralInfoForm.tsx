@@ -10,7 +10,7 @@ interface GeneralInfoFormProps {
 export default function GeneralInfoForm(props: GeneralInfoFormProps) {
   const info = props.value;
   return (
-    <div className="generalInfo form">
+    <div className="generalInfo entry">
       <label className="firstName">
         First name:
         <input

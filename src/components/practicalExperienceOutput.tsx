@@ -1,5 +1,5 @@
 import type { PracticalExperience } from "../types";
-import EntryListOutput from "./entryListOutput";
+import EntryListOutput, { renderEntry } from "./entryListOutput";
 
 interface PracticalExperiencesOutputProps {
   experiences: PracticalExperience[];
@@ -10,7 +10,7 @@ export default function PracticalExperiencesOutput({
 }: PracticalExperiencesOutputProps) {
   const props = {
     entries: experiences,
-    renderEntry: renderPracticalExperience,
+    renderEntry: renderEntry,
   };
 
   return (
@@ -20,19 +20,19 @@ export default function PracticalExperiencesOutput({
   );
 }
 
-function renderPracticalExperience(experience: PracticalExperience) {
-  const props: PracticalExperienceOutputProps = { experience };
-  return <PracticalExperienceOutput {...props} />;
-}
+// function renderPracticalExperience(experience: PracticalExperience) {
+//   const props: PracticalExperienceOutputProps = { experience };
+//   return <PracticalExperienceOutput {...props} />;
+// }
 
-interface PracticalExperienceOutputProps {
-  experience: PracticalExperience;
-}
+// interface PracticalExperienceOutputProps {
+//   experience: PracticalExperience;
+// }
 
-function PracticalExperienceOutput(props: PracticalExperienceOutputProps) {
-  return (
-    <div className="practicalExperience">
-      <div className="description">{props.experience.description}</div>
-    </div>
-  );
-}
+// function PracticalExperienceOutput(props: PracticalExperienceOutputProps) {
+//   return (
+//     <div className="practicalExperience">
+//       <div className="description">{props.experience.description}</div>
+//     </div>
+//   );
+// }

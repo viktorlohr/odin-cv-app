@@ -17,7 +17,7 @@ export default function EntryListForm<T extends { id: string }>({
   const insertEntry = (entry: T) => setEntries([entry, ...entries]);
 
   return (
-    <div className="list">
+    <div>
       <button
         className="insert"
         type="button"
@@ -25,10 +25,12 @@ export default function EntryListForm<T extends { id: string }>({
       >
         Add
       </button>
-      {entries.map((entry) => {
-        const props = { entry, updateEntry };
-        return <Entry {...props} />;
-      })}
+      <div className="entries">
+        {entries.map((entry) => {
+          const props = { entry, updateEntry };
+          return <Entry {...props} />;
+        })}
+      </div>
     </div>
   );
 }

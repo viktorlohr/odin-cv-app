@@ -31,3 +31,40 @@
   box-shadow: 0px 0px 12px gray;
   border-radius: 12px;
 }
+
+.entries {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  margin: 12px 0px;
+  background-color: rgb(240, 248, 255);
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px gray;
+}
+
+.output .entry {
+  gap: 1rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+.datesAndTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  gap: 2rem;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}

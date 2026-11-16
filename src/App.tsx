@@ -31,7 +31,12 @@ function App() {
   const initPracticalExperience: PracticalExperience = {
     ...createEmptyEntry(),
     id: "0",
+    title: "Company XY",
     description: "This is some work that i have been doing",
+    fromMonth: "01",
+    fromYear: "2026",
+    untilMonth: "01",
+    untilYear: "2027",
   };
   const [practicalExperiences, setPracticalExperiences] = useState<
     PracticalExperience[]
@@ -44,7 +49,12 @@ function App() {
   const initEducationEntry = {
     ...createEmptyEntry(),
     id: "0",
+    title: "University XY",
     description: "I've had this education.",
+    fromMonth: "01",
+    fromYear: "2026",
+    untilMonth: "01",
+    untilYear: "2027",
   };
   const [educationEntries, setEducationEntries] = useState<EducationEntry[]>([
     initEducationEntry,

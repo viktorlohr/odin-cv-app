@@ -5,6 +5,7 @@ import GeneralInfoForm from "./components/GeneralInfoForm";
 import GeneralInfoOutput from "./components/GeneralInfoOutput";
 import PracticalExperienceForm from "./components/practicalExperienceForm";
 import PracticalExperiencesOutput from "./components/practicalExperienceOutput";
+import { initTestEntries, type TestEntry } from "./components/testEntries";
 
 function App() {
   const initGeneralInfo: GeneralInfo = {
@@ -25,6 +26,7 @@ function App() {
   const [practicalExperiences, setPracticalExperiences] = useState<
     PracticalExperience[]
   >(initPracticalExperiences);
+  const [testEntries, setTestEntries] = useState<TestEntry[]>(initTestEntries);
 
   return (
     <>
@@ -34,6 +36,7 @@ function App() {
           value={practicalExperiences}
           onChange={setPracticalExperiences}
         />
+        <TestEntries />
       </div>
       <div className="output">
         <h1>Curriculum Vitae</h1>

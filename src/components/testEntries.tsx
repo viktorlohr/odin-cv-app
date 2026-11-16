@@ -1,19 +1,24 @@
 import EntryList, { type EntryListProps } from "./entryList";
 
-interface TestEntry {
+export interface TestEntry {
   id: string;
   foo: string;
 }
 const testEntry = { id: "0", foo: "foo" };
 
-export const testEntries = [testEntry];
+export const initTestEntries = [testEntry];
 
 const createEmptyTestEntry: () => TestEntry = () => ({
   id: crypto.randomUUID(),
   foo: "",
 });
 
-export default function (setTestEntries: (entries: TestEntry[]) => void) {
+export interface TestEntryProps {
+  testEntries: TestEntry[];
+  setTestEntries: (newEntries: TestEntry[]) => void;
+}
+
+export default function ({ testEntries, setTestEntries }: TestEntryProps) {
   const props: EntryListProps<TestEntry> = {
     entries: testEntries,
     createEmptyEntry: createEmptyTestEntry,

@@ -5,9 +5,18 @@ import GeneralInfoForm from "./components/GeneralInfoForm";
 import GeneralInfoOutput from "./components/GeneralInfoOutput";
 
 function App() {
-  const [generalInfo, setGeneralInfo] = useState<GeneralInfo>({
-    firstName: "",
-  });
+  const initGeneralInfo: GeneralInfo = {
+    firstName: "Max",
+    lastName: "Mustermann",
+    street: "Musterstreet",
+    streetNumber: 42,
+    postalCode: 12345,
+    city: "Mustercity",
+    email: "max@mustermann.de",
+    phone: "0 123 5678 9101",
+  };
+
+  const [generalInfo, setGeneralInfo] = useState<GeneralInfo>(initGeneralInfo);
 
   return (
     <>

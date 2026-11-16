@@ -2,7 +2,7 @@ import type { PracticalExperience } from "../types";
 
 interface PracticalExperiencesFormsProps {
   value: PracticalExperience[];
-  onChange: (v: [PracticalExperience]) => void;
+  onChange: (v: PracticalExperience[]) => void;
 }
 
 export default function PracticalExperiencesForms(
@@ -10,13 +10,20 @@ export default function PracticalExperiencesForms(
 ) {
   const experiences = props.value;
   const updateExperience = (experience: PracticalExperience) =>
-    experiences.map((exp) => (exp.id === experience.id ? experience : exp));
+    props.onChange(
+      experiences.map((exp) => (exp.id === experience.id ? experience : exp)),
+    );
 
   return (
     <div className="practicalExperiences">
-      {experiences.map((exp) =>
-        PracticalExperienceForm({ value: exp, updateExperience }),
-      )}
+      <h3>Practical Experiences</h3>
+      {experiences.map((exp) => (
+        <PracticalExperienceForm
+          key={exp.id}
+          value={exp}
+          updateExperience={updateExperience}
+        />
+      ))}
     </div>
   );
 }
@@ -31,6 +38,7 @@ function PracticalExperienceForm(props: PracticalExperienceFormProps) {
   return (
     <div className="practicalExperience form">
       <label className="description">
+        Description:
         <input
           type="text"
           value={props.value.description}

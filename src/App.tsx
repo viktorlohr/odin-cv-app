@@ -4,6 +4,7 @@ import { type GeneralInfo, type PracticalExperience } from "./types";
 import GeneralInfoForm from "./components/GeneralInfoForm";
 import GeneralInfoOutput from "./components/GeneralInfoOutput";
 import PracticalExperienceForm from "./components/practicalExperienceForm";
+import PracticalExperiencesOutput from "./components/practicalExperienceOutput";
 
 function App() {
   const initGeneralInfo: GeneralInfo = {
@@ -16,11 +17,14 @@ function App() {
     email: "max@mustermann.de",
     phone: "0 123 5678 9101",
   };
+  const initPracticalExperiences: PracticalExperience[] = [
+    { id: 0, description: "This is some work that i have been doing" },
+  ];
 
   const [generalInfo, setGeneralInfo] = useState<GeneralInfo>(initGeneralInfo);
   const [practicalExperiences, setPracticalExperiences] = useState<
     PracticalExperience[]
-  >([]);
+  >(initPracticalExperiences);
 
   return (
     <>
@@ -34,6 +38,7 @@ function App() {
       <div className="output">
         <h1>Curriculum Vitae</h1>
         <GeneralInfoOutput {...generalInfo} />
+        <PracticalExperiencesOutput experiences={practicalExperiences} />
       </div>
     </>
   );

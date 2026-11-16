@@ -1,3 +1,5 @@
+import type { ListEntry } from "../types";
+
 export interface EntryListFormProps<T extends { id: string }> {
   entries: T[];
   setEntries: (newEntries: T[]) => void;
@@ -86,4 +88,16 @@ function displayCamelCase(s: string) {
     );
 
   return _s.charAt(0).toUpperCase() + _s.slice(1);
+}
+
+export function createEmptyEntry(): ListEntry {
+  return {
+    id: crypto.randomUUID(),
+    title: "",
+    description: "",
+    fromMonth: "",
+    fromYear: "",
+    untilMonth: "",
+    untilYear: "",
+  };
 }

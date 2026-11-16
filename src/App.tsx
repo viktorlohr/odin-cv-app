@@ -13,6 +13,7 @@ import EducationEntriesForm from "./components/educationEntriesForm";
 import EducationOutput, {
   type EducationOutputProps,
 } from "./components/educationOutput";
+import { createEmptyEntry } from "./components/entryListForm";
 
 function App() {
   const initGeneralInfo: GeneralInfo = {
@@ -28,6 +29,7 @@ function App() {
   const [generalInfo, setGeneralInfo] = useState<GeneralInfo>(initGeneralInfo);
 
   const initPracticalExperience: PracticalExperience = {
+    ...createEmptyEntry(),
     id: "0",
     description: "This is some work that i have been doing",
   };
@@ -40,6 +42,7 @@ function App() {
   };
 
   const initEducationEntry = {
+    ...createEmptyEntry(),
     id: "0",
     description: "I've had this education.",
   };

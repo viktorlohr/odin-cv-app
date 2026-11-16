@@ -1,5 +1,5 @@
 import type { PracticalExperience } from "../types";
-import EntryListForm from "./entryListForm";
+import EntryListForm, { createEmptyEntry } from "./entryListForm";
 
 export interface PracticalExperienceFormProps {
   practicalExperiences: PracticalExperience[];
@@ -7,7 +7,7 @@ export interface PracticalExperienceFormProps {
 }
 
 function createEmptyPracticalExperience(): PracticalExperience {
-  return { id: crypto.randomUUID(), description: "" };
+  return createEmptyEntry();
 }
 
 export default function PracticalExperienceForm({

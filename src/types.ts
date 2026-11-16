@@ -9,14 +9,16 @@ export interface GeneralInfo {
   phone: string;
 }
 
-export interface PracticalExperience {
-  // from: Date;
-  // to: Date;
+export interface ListEntry {
   id: string;
+  title: string;
   description: string;
+  fromMonth: string;
+  fromYear: string;
+  untilMonth: string;
+  untilYear: string;
 }
 
-export interface EducationEntry {
-  id: string;
-  description: string;
-}
+export type PracticalExperience = ListEntry;
+
+export type EducationEntry = ListEntry;

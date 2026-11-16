@@ -1,5 +1,8 @@
 import type { EducationEntry } from "../types";
-import EntryListForm, { type EntryListFormProps } from "./entryListForm";
+import EntryListForm, {
+  createEmptyEntry,
+  type EntryListFormProps,
+} from "./entryListForm";
 
 interface EducationEntriesFormProps {
   educationEntries: EducationEntry[];
@@ -7,10 +10,7 @@ interface EducationEntriesFormProps {
 }
 
 function createEmptyEducationEntry(): EducationEntry {
-  return {
-    id: crypto.randomUUID(),
-    description: "",
-  };
+  return createEmptyEntry();
 }
 
 export default function EducationEntriesForm({

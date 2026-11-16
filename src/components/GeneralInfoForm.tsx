@@ -11,7 +11,6 @@ export default function GeneralInfoForm(props: GeneralInfoFormProps) {
   const info = props.value;
   return (
     <div className="generalInfo form">
-      <h3>General Info</h3>
       <label className="firstName">
         First name:
         <input

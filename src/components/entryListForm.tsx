@@ -16,6 +16,9 @@ export default function EntryListForm<T extends { id: string }>({
 
   const insertEntry = (entry: T) => setEntries([entry, ...entries]);
 
+  const removeEntry = (id: string) =>
+    setEntries(entries.filter((entry) => entry.id !== id));
+
   return (
     <div>
       <button
@@ -27,7 +30,7 @@ export default function EntryListForm<T extends { id: string }>({
       </button>
       <div className="entries">
         {entries.map((entry) => {
-          const props = { entry, updateEntry };
+          const props = { entry, updateEntry, removeEntry };
           return <Entry {...props} />;
         })}
       </div>
@@ -38,11 +41,13 @@ export default function EntryListForm<T extends { id: string }>({
 interface EntryFormProps<T extends { id: string }> {
   entry: T;
   updateEntry: (entry: T) => void;
+  removeEntry: (id: string) => void;
 }
 
 function Entry<T extends { id: string }>({
   entry,
   updateEntry,
+  removeEntry,
 }: EntryFormProps<T>) {
   const keys = Object.keys(entry).filter(
     (property) => property !== "id",
@@ -54,6 +59,9 @@ function Entry<T extends { id: string }>({
         const props: FormElFromKeyProps<T> = { property, entry, updateEntry };
         return <FormElFromKey {...props} />;
       })}
+      <button type="button" onClick={() => removeEntry(entry.id)}>
+        Remove
+      </button>
     </div>
   );
 }

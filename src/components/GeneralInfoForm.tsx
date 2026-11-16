@@ -78,6 +78,19 @@ export default function GeneralInfoForm(props: GeneralInfoFormProps) {
           }
         />
       </label>
+      <label className="image">
+        Image Link:
+        <input
+          type="text"
+          value={info.profilePictureLink}
+          onChange={(e) =>
+            props.onChange({
+              ...info,
+              profilePictureLink: e.target.value,
+            })
+          }
+        />
+      </label>
     </div>
   );
 }
